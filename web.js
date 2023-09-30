@@ -7,6 +7,7 @@
 var app = require('./app');
 var debug = require('debug')('proto:server');
 var http = require('http');
+var ExcelJS = require('exceljs');
 
 /**
  * Get port from environment and store in Express.
@@ -15,6 +16,23 @@ var http = require('http');
 var port = normalizePort(8001);
 app.set('port', port);
 
+app.get('/', (req, res) => {
+  const workbook = new ExcelJS.Workbook();
+  workbook.xlsx.readFile('./sample.xlsx')
+    .then(() => {
+      const worksheet = workbook.getWorksheet(1);
+
+      const data = [];
+      worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
+        data.push(row.values);
+      });
+      res.json(data);
+    })
+    .catch(err => {
+      console.error('Excel 파일을 읽는 동안 오류 발생:', err);
+      res.status(500).send('서버 오류');
+    });
+});
 /**
  * Create HTTP server.
  */
