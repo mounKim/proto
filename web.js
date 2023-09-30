@@ -2,6 +2,7 @@
 
 var express = require('express');
 var app = require('./app');
+var path = require('path');
 var debug = require('debug')('proto:server');
 var http = require('http');
 var indexRouter = require('./routes/index');
