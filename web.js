@@ -4,7 +4,6 @@ var express = require('express');
 var app = require('./app');
 var debug = require('debug')('proto:server');
 var http = require('http');
-var ExcelJS = require('exceljs');
 var indexRouter = require('./routes/index');
 var port = normalizePort(8001);
 
