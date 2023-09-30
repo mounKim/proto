@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
   workbook.xlsx.readFile('./sample.xlsx')
     .then(() => {
       const worksheet = workbook.getWorksheet(1);
-      const data = {name: "a"}
+      const data = {message: "a"}
       res.render('index', {data});
     })
     .catch(err => {
