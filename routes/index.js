@@ -8,11 +8,15 @@ router.get('/', function(req, res, next) {
   const workbook = new ExcelJS.Workbook();
   workbook.xlsx.readFile(path.join(__dirname, 'sample.xlsx'))
   .then(() => {
-    res.render('index', { title: 'FIND' });
+    const worksheet = workbook.getWorksheet(1);
+    const data = [];
+    worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
+      data.push(row.values);
+    });
+    res.render('index', {title: data});
   })
   .catch(err => {
-    console.error('파일 읽기 오류:', err);
-    res.render('index', { title: 'ERROR' });
+    console.error(err);
   })
 });
 
