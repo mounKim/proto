@@ -4,10 +4,13 @@ var app = require('./app');
 var debug = require('debug')('proto:server');
 var http = require('http');
 var ExcelJS = require('exceljs');
+var indexRouter = require('./routes/index');
 var port = normalizePort(8001);
 
 app.set('port', port);
 app.set('view engine', 'pug');
+app.use(express.json());
+app.use('/', indexRouter);
 
 var server = http.createServer(app);
 
