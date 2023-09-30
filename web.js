@@ -13,12 +13,8 @@ app.get('/', (req, res) => {
   workbook.xlsx.readFile('./sample.xlsx')
     .then(() => {
       const worksheet = workbook.getWorksheet(1);
-
-      const data = [];
-      worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
-        data.push(row.values);
-      });
-      res.json(data);
+      const data = {name: "a"}
+      res.render('index', {data});
     })
     .catch(err => {
       res.status(500).send('서버 오류');
