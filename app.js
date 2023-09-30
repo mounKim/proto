@@ -38,13 +38,14 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.get('./sample.xlsx', (req, res) => {
-  fs.readFile(csvFilePath, 'utf8', (err, data) => {
+app.get('/', (req, res) => {
+  fs.readFile('./sample.xlsx', 'utf8', (err, data) => {
     if (err) {
       console.error('CSV 파일을 읽는 동안 오류 발생:', err);
       res.status(500).send('서버 오류');
       return;
     }
+    console.log("ok");
     res.send(data);
   });
 });
