@@ -1,19 +1,11 @@
 #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
-
 var app = require('./app');
 var debug = require('debug')('proto:server');
 var http = require('http');
 var ExcelJS = require('exceljs');
-
-/**
- * Get port from environment and store in Express.
- */
-
 var port = normalizePort(8001);
+
 app.set('port', port);
 
 app.get('/', (req, res) => {
@@ -26,31 +18,18 @@ app.get('/', (req, res) => {
       worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
         data.push(row.values);
       });
-      console.log("a");
       res.json(data);
     })
     .catch(err => {
-      console.error('Excel 파일을 읽는 동안 오류 발생:', err);
       res.status(500).send('서버 오류');
     });
 });
-/**
- * Create HTTP server.
- */
 
 var server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
 
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
-/**
- * Normalize a port into a number, string, or false.
- */
 
 function normalizePort(val) {
   var port = parseInt(val, 10);
