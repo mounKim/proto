@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+var express = require('express');
 var app = require('./app');
 var debug = require('debug')('proto:server');
 var http = require('http');
