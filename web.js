@@ -9,16 +9,8 @@ var port = normalizePort(8001);
 app.set('port', port);
 
 app.get('/', (req, res) => {
-  const workbook = new ExcelJS.Workbook();
-  workbook.xlsx.readFile('./sample.xlsx')
-    .then(() => {
-      const worksheet = workbook.getWorksheet(1);
-      const data = {message: "a"}
-      res.render('index', {data});
-    })
-    .catch(err => {
-      res.status(500).send('서버 오류');
-    });
+  const data = {message: "a"}
+  res.render('index', {data});
 });
 
 var server = http.createServer(app);
