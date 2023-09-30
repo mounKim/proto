@@ -3,11 +3,10 @@ var ExcelJS = require('exceljs');
 var path = require('path');
 var router = express.Router();
 
-router.use(express.static(path.join(__dirname, 'public')));
 /* GET home page. */
 router.get('/', function(req, res, next) {
   const workbook = new ExcelJS.Workbook();
-  workbook.xlsx.readFile(path.join(__dirname, 'public', 'sample.xlsx'))
+  workbook.xlsx.readFile(path.join(__dirname, 'sample.xlsx'))
   .then(() => {
     res.render('index', { title: 'FIND' });
   })
