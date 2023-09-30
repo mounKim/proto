@@ -5,7 +5,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   const workbook = new ExcelJS.Workbook();
-  workbook.xlsx.readFile('../routes/sample.xlsx')
+  workbook.xlsx.readFile('sample.xlsx')
   .then(() => {
     res.render('index', { title: 'FIND' });
   })
