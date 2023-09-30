@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
     res.render('index', { title: 'FIND' });
   })
   .catch(err => {
+    console.log(process.cwd());
     console.error('파일 읽기 오류:', err);
     res.render('index', { title: 'ERROR' });
   })
