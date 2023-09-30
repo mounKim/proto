@@ -8,10 +8,6 @@ var port = normalizePort(8001);
 
 app.set('port', port);
 app.set('view engine', 'pug');
-app.get('/', (req, res) => {
-  const data = {message: "a"}
-  res.render('index', {data});
-});
 
 var server = http.createServer(app);
 
