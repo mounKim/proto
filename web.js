@@ -2,7 +2,6 @@
 
 var express = require('express');
 var app = require('./app');
-var ExcelJS = require('exceljs');
 var debug = require('debug')('proto:server');
 var http = require('http');
 var indexRouter = require('./routes/index');
@@ -12,14 +11,8 @@ app.set('port', port);
 app.set('view engine', 'pug');
 app.use(express.json());
 app.use('/', indexRouter);
-const workbook = new ExcelJS.Workbook();
-workbook.xlsx.readFile('./routes/sample.xlsx')
-.then(() => {
-  console.error('파일 찾음');
-})
-.catch(err => {
-  console.error('파일 읽기 오류:', err);
-})
+app.use(express.static(path.join(__dirname, 'public')));
+
 var server = http.createServer(app);
 
 server.listen(port);
