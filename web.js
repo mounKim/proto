@@ -26,6 +26,7 @@ app.get('/', (req, res) => {
       worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
         data.push(row.values);
       });
+      console.log("a");
       res.json(data);
     })
     .catch(err => {
