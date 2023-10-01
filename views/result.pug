@@ -42,7 +42,7 @@ block content
     final_win = "#{final_win}".split(",");
     final_draw = "#{final_draw}".split(",");
     final_lose = "#{final_lose}".split(",");
-    element = "#{element}".split(",");
+    element = "#{game}".split(",");
     for (let i = 0; i < #{game_num}; i++) {
       table = document.getElementById("main");
       newRow = table.insertRow();
@@ -57,20 +57,20 @@ block content
       cellE = newRow.insertCell(4);
       cellE.innerHTML = final_away[i];
       cellF = newRow.insertCell(5);
-      if (element[i] == final_win[i]) {
-        cellF.innerHTML = "<strong>final_win[i]</strong>";
+      if (parseFloat(element[i]) == final_win[i]) {
+        cellF.innerHTML = "<strong>" + final_win[i] + "</strong>";
       } else {
         cellF.innerHTML = final_win[i];
       }
       cellG = newRow.insertCell(6);
-      if (element[i] == final_draw[i]) {
-        cellG.innerHTML = "<strong>final_draw[i]</strong>";
+      if (parseFloat(element[i]) == final_draw[i]) {
+        cellG.innerHTML = "<strong>" + final_draw[i] + "</strong>";
       } else {
         cellG.innerHTML = final_draw[i];
       }
       cellH = newRow.insertCell(7);
-      if (element[i] == final_lose[i]) {
-        cellH.innerHTML = "<strong>final_lose[i]</strong>";
+      if (parseFloat(element[i]) == final_lose[i]) {
+        cellH.innerHTML = "<strong>" + final_lose[i] + "</strong>";
       } else {
         cellH.innerHTML = final_lose[i];
       }

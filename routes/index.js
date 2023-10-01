@@ -56,12 +56,14 @@ router.post('/result', function(req, res, next) {
     while (true) {
       var sample = []
       var i_sample = []
+      var sample_dict = {}
       while (sample.length < matchCount) {
         var index = Math.floor(Math.random() * info.select.length);
         var element = info.select[index];
         if (!i_sample.includes(index)) {
           sample.push(element);
           i_sample.push(index);
+          sample_dict[index] = element;
         }
       }
       result = sample.reduce((a, c) => a * c, 1);
@@ -81,7 +83,7 @@ router.post('/result', function(req, res, next) {
       final_win: info.win.filter((_, idx) => i_sample.includes(idx)),
       final_draw: info.draw.filter((_, idx) => i_sample.includes(idx)),
       final_lose: info.lose.filter((_, idx) => i_sample.includes(idx)),
-      game: element,
+      game: Object.values(sample_dict),
     });
   })
   .catch(err => {
