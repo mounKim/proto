@@ -6,12 +6,16 @@ var path = require('path');
 var debug = require('debug')('proto:server');
 var http = require('http');
 var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/result');
+var bodyParser = require('body-parser');
 var port = normalizePort(8001);
 
 app.set('port', port);
 app.set('view engine', 'pug');
 app.use(express.json());
 app.use('/', indexRouter);
+app.use('/result', usersRouter);
+app.use(bodyParser.urlencoded( {extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 var server = http.createServer(app);

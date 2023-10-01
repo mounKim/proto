@@ -1,0 +1,68 @@
+extends layout
+
+block content 
+  h1 프로토 조합기
+  form(action="/result", method="POST")
+    div
+      label(for="b") 경기수 :
+      input(type="text" id="b" name="matchCount")
+    div
+      label(for="c") 배당액 :
+      input(type="text" id="c" name="odds")
+    div
+      label(for="d") 구매액 :
+      input(type="text" id="d" name="purchaseAmount")
+    h3(id="money")
+    div
+      input(type="submit" value="당첨을 기원합니다!!!")
+  table(id="main" border="1")
+    tr
+      th 번호
+      th 일시
+      th 핸디 및 언/오버
+      th 홈팀
+      th 원정팀
+      th 승(국내)
+      th 무(국내)
+      th 패(국내)
+  </div>
+  div.container
+    div.left-column
+      | 그래프 확률값을 토대로 현재시간을 반영하여 조합합니다.
+    div.right-column
+      | 미당첨시 책임지지 않습니다. 선택은 항상 본인의 몫입니다!
+  script.
+    result = #{money} * #{final_odd}
+    document.querySelector('#money').textContent = "최종 당첨 금액 : " + parseInt(result) + "원";
+    final_num = "#{final_num}".split(",");
+    final_day = "#{final_day}".split(",");
+    final_hand = "#{final_hand}".split(",");
+    final_home = "#{final_home}".split(",");
+    final_away = "#{final_away}".split(",");
+    final_win = "#{final_win}".split(",");
+    final_draw = "#{final_draw}".split(",");
+    final_lose = "#{final_lose}".split(",");
+    for (let i = 0; i < #{game_num}; i++) {
+      table = document.getElementById("main");
+      newRow = table.insertRow();
+      cellA = newRow.insertCell(0);
+      cellA.innerHTML = final_num[i];
+      cellB = newRow.insertCell(1);
+      cellB.innerHTML = final_day[i];
+      cellC = newRow.insertCell(2);
+      cellC.innerHTML = final_hand[i];
+      cellD = newRow.insertCell(3);
+      cellD.innerHTML = final_home[i];
+      cellE = newRow.insertCell(4);
+      cellE.innerHTML = final_away[i];
+      cellF = newRow.insertCell(5);
+      cellF.innerHTML = final_win[i];
+      cellG = newRow.insertCell(6);
+      cellG.innerHTML = final_draw[i];
+      cellH = newRow.insertCell(7);
+      cellH.innerHTML = final_lose[i];
+    }
+    newRow = table.insertRow();
+    cellI = newRow.insertCell(0);
+    cellI.innerHTML = "<strong>배당 합계 #{final_odd.toFixed(2)}</strong>";
+    cellI.colSpan = 8;

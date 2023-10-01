@@ -1,16 +1,22 @@
 extends layout
 
 block content 
-  h1 #{title}
   h1 프로토 조합기
-  div 조합시작 (ex. 05.12(일) 19:00) : <input type="text" id="a"/>
-  div 경기수 : <input type="text" id="b"/>
-  div 배당 : <input type="text" id="c"/>
-  div 구매금액 : <input type="text" id="d"/>
-  <button pys-onClick="parse_json()" id="button">실행</button>
+  form(action="/result", method="POST")
+    div
+      label(for="b") 경기수 :
+      input(type="text" id="b" name="matchCount")
+    div
+      label(for="c") 배당액 :
+      input(type="text" id="c" name="odds")
+    div
+      label(for="d") 구매액 :
+      input(type="text" id="d" name="purchaseAmount")
+    div
+      input(type="submit" value="당첨을 기원합니다!!!")
   <div id="result"></div>
 
-  script.
+//-  script.
     while (true) {
       var passwd = prompt("비밀번호를 입력하세요.");
       if (passwd == "1234") {
