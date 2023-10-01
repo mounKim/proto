@@ -81,6 +81,7 @@ router.post('/result', function(req, res, next) {
       final_win: info.win.filter((_, idx) => i_sample.includes(idx)),
       final_draw: info.draw.filter((_, idx) => i_sample.includes(idx)),
       final_lose: info.lose.filter((_, idx) => i_sample.includes(idx)),
+      game: element,
     });
   })
   .catch(err => {
